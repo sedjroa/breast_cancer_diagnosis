@@ -30,12 +30,25 @@ def sidebar_input_scale(sidebar_inputs):
     return sidebar_inputs
 
 def add_prediction(sidebar_infos):
+    
     scaler = pk.load(open("model/scaler.pkl","rb"))
     model = pk.load(open("model/model.pkl","rb"))
     user_inputs = np.array(list(sidebar_infos.values())).reshape(1, -1)
     scaled_user_inputs = scaler.transform(user_inputs)
     pred = model.predict(scaled_user_inputs)
-    return pred   
+
+    st.subheader("Cell cluster prediction")
+    st.write("The cell cluster is:")
+    if pred[0] == 0:
+            st.write("Benign")
+    else:
+        st.write("Malicious")
+    
+    st.write("Probability Of Being Benign: ", model.predict_proba(scaled_user_inputs)[0][0])
+    st.write("Probability Of Being Malicious: ", model.predict_proba(scaled_user_inputs)[0][1])
+    st.write("This app can assist medical professionals in making a diagnosis, but should not be used as a " \
+    "substitute for professional diagnosis.")
+       
 
 def get_radar_chart(sidebar_inputs):
     fig = go.Figure()
@@ -76,10 +89,15 @@ def get_radar_chart(sidebar_inputs):
     return fig
 
 def main():
+
     st.set_page_config(page_title='Breast Cancer Diagnosis', 
                         page_icon=":female-doctor:",
                         layout="wide",
                         initial_sidebar_state="expanded")
+    
+    with open("assets/style.css") as stylefile:
+        st.markdown("<style>{}</style>".format(stylefile.read()), unsafe_allow_html=True)
+
 
     with st.container():
         st.title("Breast Cancer Predictor")
@@ -88,7 +106,7 @@ def main():
         "is malign or benign based on the measurements it receives from your cytosis lab. "
         "Your can also update the measurements by hand using the sliders in the sidebar.")
 
-    col1, col2 = st.columns([4,1])
+    col1, col2 = st.columns([3,1])
 
     sidebar_infos = add_sidebar()
     
@@ -98,11 +116,8 @@ def main():
         st.plotly_chart(radar_chart)
         
     with col2:
-        prediction = add_prediction(sidebar_infos)
-        if prediction[0] == 0:
-            st.write("Benign")
-        else:
-            st.write("Malicious")
+        add_prediction(sidebar_infos)
+      
 
 
 if __name__ == "__main__":
