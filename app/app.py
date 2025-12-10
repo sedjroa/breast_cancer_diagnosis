@@ -40,9 +40,10 @@ def add_prediction(sidebar_infos):
     st.subheader("Cell cluster prediction")
     st.write("The cell cluster is:")
     if pred[0] == 0:
-            st.write("Benign")
+            st.write("<span class='diagnosis benign'>Benign</span>", unsafe_allow_html=True)
+            
     else:
-        st.write("Malicious")
+        st.write("<span class='diagnosis malicious'>Malicious</span>", unsafe_allow_html=True)
     
     st.write("Probability Of Being Benign: ", model.predict_proba(scaled_user_inputs)[0][0])
     st.write("Probability Of Being Malicious: ", model.predict_proba(scaled_user_inputs)[0][1])

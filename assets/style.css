@@ -4,3 +4,14 @@
     background-color: #7E99AB;
     color: #FFF;
 }
+.diagnosis{
+    color: #FFF;
+    padding: 5px;
+    border-radius: 5px
+}
+.diagnosis.benign{
+    background-color: green;
+}
+.diagnosis.malicious{
+    background-color: red;
+}
