@@ -1,3 +1,15 @@
+---
+title: Breast Cancer Prediction
+emoji: 💻
+colorFrom: yellow
+colorTo: yellow
+sdk: docker
+pinned: false
+license: mit
+app_port: 8501
+short_description: Help You Predict If Cancer Is Benign Or Malicious
+---
+
 # breast_cancer_diagnosis
 Streamlit App Using Machine Learning Model to Predict If Tumor  is Benign or Malicious
 
