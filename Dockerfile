@@ -6,9 +6,9 @@ COPY requirements.txt ./
 
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY /app .
-COPY /assets .
-COPY /data .
-COPY /model .
+COPY app ./app
+COPY assets ./assets
+COPY data ./data
+COPY model ./model
 
 CMD ["streamlit", "run", "app.py", "--server.port=8501", "--server.address=0.0.0.0"]
