@@ -88,19 +88,14 @@ def get_radar_chart(sidebar_inputs):
 
     return fig
 
-import streamlit as st
-
-# ... (your main function and the rest of the code)
-
 def display_metrics_summary():
     
     F1_SCORE_MALIGNANT = 0.96
     PRECISION_MALIGNANT = 0.98
     RECALL_MALIGNANT = 0.95
 
-    
-    st.markdown("---") # Separator line
-    st.subheader("📊 Model Performance on Critical Class (Malignant)")
+    st.markdown("---")
+    st.subheader("Model Performance on Critical Class (Malignant)")
 
     col1, col2, col3 = st.columns(3) 
 
