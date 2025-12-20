@@ -10,7 +10,7 @@ app_port: 8501
 short_description: Help You Predict If Cancer Is Benign Or Malicious
 ---
 
-# breast_cancer_diagnosis
+# breast_cancer_diagnosis [Test the app](https://huggingface.co/spaces/sedjroa/breast_cancer_prediction)
 Streamlit App Using Machine Learning Model to Predict If Tumor  is Benign or Malicious
 
 # View of the App
